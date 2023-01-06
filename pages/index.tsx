@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -31,8 +32,6 @@ export default function Home() {
               />
               </div>
 
-              
-
               <div className="text-right">
                 <Link href="#" className="text-sm text-gray-500 hover:underline mr-8">Login with Google</Link>
                 <Link href="#" className="text-sm text-gray-500 hover:underline">Forgot my password</Link>
@@ -51,6 +50,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   )
 }
