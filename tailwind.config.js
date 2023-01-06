@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'blackOpaque': '#333'
+      },
+      borderColor: {
+        'blackLight': '#111'
+      }
     }
   },
   plugins: [],
