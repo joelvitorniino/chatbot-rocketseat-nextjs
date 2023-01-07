@@ -11,12 +11,16 @@ export default function Navbar() {
             </div>
 
             <ul className="flex list-none">
-                <li className="mr-5">
+                <li className="">
                     <Link href="/" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white">Login</Link>
                 </li>
 
                 <li>
                     <Link href="register" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white">Register</Link>
+                </li>
+                
+                <li>
+                    <Link href="about" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white">About</Link>
                 </li>
             </ul>
         </nav>
