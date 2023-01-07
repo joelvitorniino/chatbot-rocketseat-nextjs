@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
@@ -52,7 +53,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   )

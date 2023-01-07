@@ -11,6 +11,12 @@ module.exports = {
       },
       borderColor: {
         'blackLight': '#111'
+      },
+      padding: {
+        '5p': '5px'
+      },
+      transitionDelay: {
+        'smooth': '.4s'
       }
     }
   },
