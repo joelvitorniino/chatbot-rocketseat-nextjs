@@ -16,17 +16,18 @@ export default function Home() {
 
           <div className="bg-white shadow-md rounded-md p-6 space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm text-gray-800 mb-2">Email</label>
-              <input 
-                type="text" 
-                name="email" 
-                className="w-full bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 plcaeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
-              />
+              <form action="" method="POST">
+                <label htmlFor="email" className="block text-sm text-gray-800 mb-2">Email</label>
+                <input 
+                  type="text" 
+                  name="email" 
+                  className="w-full bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 plcaeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
+                />
 
               <div>
                 <label htmlFor="password" className="block text-sm text-gray-800 mb-2">Password</label>
                 <input 
-                  type="text" 
+                  type="password" 
                   name="password" 
                   className="w-full bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 plcaeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
               />
@@ -43,9 +44,10 @@ export default function Home() {
                 </button>
 
                 <button className="w-full text-sm bg-red-400 hover:bg-red-500 px-6 py-1 mt-3 rounded text-white shadow">
-                  <Link href="#">Register</Link>
+                  <Link href="/register">Register</Link>
                 </button>
               </div>
+              </form>
             </div>
           </div>
         </div>
