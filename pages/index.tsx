@@ -44,7 +44,7 @@ export default function Home() {
                 </button>
 
                 <button className="w-full text-sm bg-red-400 hover:bg-red-500 px-6 py-1 mt-3 rounded text-white shadow">
-                  <Link href="/register">Register</Link>
+                  <Link href="register">Register</Link>
                 </button>
               </div>
               </form>
