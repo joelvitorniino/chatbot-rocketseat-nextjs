@@ -6,7 +6,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
     return (
         <>
             <Navbar />
-            <main className="main-container">{ children }</main>
+                <main className="main-container">{ children }</main>
             <Footer />
         </>
     )
