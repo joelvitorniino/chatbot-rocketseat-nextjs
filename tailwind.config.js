@@ -7,16 +7,27 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        'blackOpaque': '#333'
+        'blackOpaque': '#333',
+        'blueLight': '#006699'
       },
       borderColor: {
-        'blackLight': '#111'
+        'blackLight': '#111',
+        'whiteLight': '#dddddd'
       },
       padding: {
         '5p': '5px'
       },
       transitionDelay: {
         'smooth': '.4s'
+      },
+      width: {
+        '600': '600px'
+      },
+      height: {
+        '400': '400px'
+      },
+      lineHeight: {
+        'md': '50px'
       }
     }
   },
