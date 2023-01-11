@@ -12,21 +12,30 @@ export default function Chat() {
     const [author, setAuthor] = useState("");
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
+            
+    socket.on("previousMessages", (msg) => {
+        msg.map((messages: Message) => {
+            setMessages((currentMsg) => [
+                ...currentMsg,
+                { author: messages.author, message: messages.message }
+            ]);
+        });
+    });
 
     const handleMessages = (e: any) => {
         socket.emit("sendMessage", { author, message });
     };
 
     socket.on("receivedMessage", (msg) => {
-        setMessages([
-            ...messages,
+        setMessages((currentMsg) => [
+            ...currentMsg,
             { author: msg.author, message: msg.message }
         ]);
-        setMessage("");
     });
     
     return (
-        <div className="h-full box-border flex justify-center items-center flex-col">
+        <div className="h-full">
+                <form className="box-border flex justify-center items-center flex-col">
                 <input type="text" name="name" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm" placeholder="Digite seu nome:" value={author} onChange={(e) => setAuthor(e.target.value)} />
                 <input type="text" name="message" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm" placeholder="Digite sua mensagem:" value={message} onChange={(e) => setMessage(e.target.value)} />
                 
@@ -35,12 +44,14 @@ export default function Chat() {
                 <div className="w-600 h-400 ml-5 mr-0 border border-solid border-whiteLight p-5 overflow-y-auto">
                     {
                         messages.map((msg, i) => {
+                            console.log(msg);
                             return (
                                 <strong key={i}>{msg.author}: {msg.message}<br></br></strong>
                             )
                         })
                     }
                 </div>
+                </form>
         <br />
         </div> 
     )
