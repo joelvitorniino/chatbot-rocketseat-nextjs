@@ -14,7 +14,7 @@ export default function Chat() {
     const [messages, setMessages] = useState<Message[]>([]);
             
     socket.on("previousMessages", (msg) => {
-        msg.map((messages: Message) => {
+        msg.forEach((messages: Message) => {
             setMessages((currentMsg) => [
                 ...currentMsg,
                 { author: messages.author, message: messages.message }
