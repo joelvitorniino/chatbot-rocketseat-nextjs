@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io('http://localhost:3001', { transports: ['websocket'] })
+const socket = io('http://localhost:3001', { transports: ['websocket'], forceNew: true },)
 
 interface Message {
     author: string;
@@ -12,26 +12,34 @@ export default function Chat() {
     const [author, setAuthor] = useState("");
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
-            
-    socket.on("previousMessages", (msg) => {
-        msg.forEach((messages: Message) => {
-            setMessages((currentMsg) => [
-                ...currentMsg,
-                { author: messages.author, message: messages.message }
-            ]);
-        });
-    });
 
     const handleMessages = (e: any) => {
         socket.emit("sendMessage", { author, message });
     };
 
-    socket.on("receivedMessage", (msg) => {
-        setMessages((currentMsg) => [
-            ...currentMsg,
-            { author: msg.author, message: msg.message }
-        ]);
-    });
+    useEffect(() => {
+        socket.on("connection", null as any);
+        socket.on("previousMessages", (msg) => {
+            msg.forEach((messages: Message) => {
+                setMessages((currentMsg) => [
+                    ...currentMsg,
+                    { author: messages.author, message: messages.message }
+                ]);
+            });
+        });
+
+        socket.on("receivedMessage", (msg) => {
+            setMessages((currentMsg) => [
+                ...currentMsg,
+                { author: msg.author, message: msg.message }
+            ]);
+        });
+
+        return function cleanup() {
+            socket.removeListener("previousMessages");
+            socket.removeListener("receivedMessage");
+        }
+    }, []);
     
     return (
         <div className="h-full">
@@ -44,7 +52,6 @@ export default function Chat() {
                 <div className="w-600 h-400 ml-5 mr-0 border border-solid border-whiteLight p-5 overflow-y-auto">
                     {
                         messages.map((msg, i) => {
-                            console.log(msg);
                             return (
                                 <strong key={i}>{msg.author}: {msg.message}<br></br></strong>
                             )
