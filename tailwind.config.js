@@ -17,9 +17,6 @@ module.exports = {
       padding: {
         '5p': '5px'
       },
-      transitionDelay: {
-        'smooth': '.4s'
-      },
       width: {
         '600': '600px'
       },

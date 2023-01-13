@@ -14,19 +14,19 @@ export default function Navbar() {
 
             <ul className="flex list-none">
                 <li className="">
-                    <Link href="/" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Login</Link>
+                    <Link href="/" className="text-white no-underline p-5p border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Login</Link>
                 </li>
 
                 <li>
-                    <Link href="register" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Register</Link>
+                    <Link href="register" className="text-white no-underline p-5p border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Register</Link>
                 </li>
 
                 <li>
-                    <Link href="chat" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Chat</Link>
+                    <Link href="chat" className="text-white no-underline p-5p border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">Chat</Link>
                 </li>
                 
                 <li>
-                    <Link href="about" className="text-white no-underline p-5p delay-smooth border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">About</Link>
+                    <Link href="about" className="text-white no-underline p-5p border-b-2 border-solid border-transparent hover:border-white hover:text-gray-200">About</Link>
                 </li>
             </ul>
         </nav>
