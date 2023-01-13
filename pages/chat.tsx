@@ -44,8 +44,8 @@ export default function Chat() {
     return (
         <div className="h-full">
                 <form className="box-border flex justify-center items-center flex-col">
-                <input type="text" name="name" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 transition duration-200 ease-in-out" placeholder=" Digite seu nome:" value={author} onChange={(e) => setAuthor(e.target.value)} />
-                <input type="text" name="message" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 transition duration-200 ease-in-out" placeholder=" Digite sua mensagem:" value={message} onChange={(e) => setMessage(e.target.value)} />
+                <input type="text" name="name" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20  placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" placeholder=" Digite seu nome:" value={author} onChange={(e) => setAuthor(e.target.value)} />
+                <input type="text" name="message" className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" placeholder=" Digite sua mensagem:" value={message} onChange={(e) => setMessage(e.target.value)} />
                 
                 <button className="w-600 h-12 text-sm bg-blueLight text-center leading-md font-bold text-white mt-3 hover:text-gray-300" onClick={handleMessages} onSubmit={(e) => e.preventDefault()}>Enviar</button>
 
