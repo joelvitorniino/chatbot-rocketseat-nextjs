@@ -1,7 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
@@ -10,8 +8,8 @@ export default function Home() {
         <title>Login Chat</title>
         <meta charSet="utf-8" />
       </Head>
-
-      <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
+      
+      <div className="h-screen w-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 dark:text-gray-500">
         <div className="w-80">
           <div className="text-lg font-bold text-center mb-4">Login Chat</div>
 
@@ -22,7 +20,7 @@ export default function Home() {
                 <input 
                   type="text" 
                   name="email" 
-                  className="w-full bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
+                  className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
                 />
 
               <div>
@@ -30,7 +28,7 @@ export default function Home() {
                 <input 
                   type="password" 
                   name="password" 
-                  className="w-full bg-gray-50 border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
+                  className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
               />
               </div>
 
@@ -40,11 +38,11 @@ export default function Home() {
               </div>
 
               <div>
-                <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 px-6 py-1 mt-3 rounded text-white shadow">
+                <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow">
                   <Link href="#">Login</Link>
                 </button>
 
-                <button className="w-full text-sm bg-red-400 hover:bg-red-500 px-6 py-1 mt-3 rounded text-white shadow">
+                <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-slate-500 dark:hover:bg-slate-600 px-6 py-1 mt-3 rounded text-white shadow">
                   <Link href="register">Register</Link>
                 </button>
               </div>
