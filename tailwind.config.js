@@ -15,7 +15,7 @@ module.exports = {
         'whiteLight': '#dddddd'
       },
       padding: {
-        '5p': '5px'
+        '1.5': '5px'
       },
       width: {
         '600': '600px'
