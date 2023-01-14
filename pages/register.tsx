@@ -33,7 +33,6 @@ export default function Register() {
 
           <div className="bg-white shadow-md rounded-md p-6 space-y-4">
             <div>
-              <form method="POST">
                 <label
                   htmlFor="name"
                   className="block text-sm text-gray-800 mb-2"
@@ -80,10 +79,9 @@ export default function Register() {
 
                 <div>
                   <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow" onClick={register}>
-                    <Link href="#">Register</Link>
+                    <Link href="/">Register</Link>
                   </button>
                 </div>
-              </form>
             </div>
           </div>
         </div>
