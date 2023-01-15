@@ -62,7 +62,7 @@ export default function Home() {
 
               <div>
                 <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow" onClick={login}>
-                  <Link href="#">Login</Link>
+                  <Link href="/chat">Login</Link>
                 </button>
 
                 <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-slate-500 dark:hover:bg-slate-600 px-6 py-1 mt-3 rounded text-white shadow">
