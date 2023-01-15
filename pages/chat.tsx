@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
@@ -39,11 +40,23 @@ export default function Chat() {
       ]);
     });
 
+    getUser();
+
     return function cleanup() {
       socket.removeListener("previousMessages");
       socket.removeListener("receivedMessage");
     };
   }, []);
+
+  const getUser = () => {
+    axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:3001/api/v1/getUser'
+    })
+      .then(res => console.log(setAuthor(res.data.name_chat)))
+      .catch(e => console.log(e))
+  };
 
   return (
     <>
@@ -52,14 +65,6 @@ export default function Chat() {
       </Head>
       <div className="h-full">
         <form className="box-border flex justify-center items-center flex-col">
-          <input
-            type="text"
-            name="name"
-            className="w-600 border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20  placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
-            placeholder=" Digite seu nome:"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
           <input
             type="text"
             name="message"
