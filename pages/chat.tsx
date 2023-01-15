@@ -54,7 +54,7 @@ export default function Chat() {
       withCredentials: true,
       url: 'http://localhost:3001/api/v1/getUser'
     })
-      .then(res => console.log(setAuthor(res.data.name_chat)))
+      .then(res => setAuthor(res.data.name_chat))
       .catch(e => console.log(e))
   };
 
