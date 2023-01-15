@@ -1,7 +1,27 @@
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = () => {
+    axios({
+      method: 'POST',
+      data: {
+        username: email,
+        password
+      },
+      withCredentials: true,
+      url: 'http://localhost:3001/api/v1/login'
+    })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+
   return (
     <>
       <Head>
@@ -15,12 +35,13 @@ export default function Home() {
 
           <div className="bg-white shadow-md rounded-md p-6 space-y-4">
             <div>
-              <form action="" method="POST">
                 <label htmlFor="email" className="block text-sm text-gray-800 mb-2">Email</label>
                 <input 
                   type="text" 
                   name="email" 
                   className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
 
               <div>
@@ -29,7 +50,9 @@ export default function Home() {
                   type="password" 
                   name="password" 
                   className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out" 
-              />
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
 
               <div className="text-right">
@@ -38,7 +61,7 @@ export default function Home() {
               </div>
 
               <div>
-                <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow">
+                <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow" onClick={login}>
                   <Link href="#">Login</Link>
                 </button>
 
@@ -46,7 +69,6 @@ export default function Home() {
                   <Link href="register">Register</Link>
                 </button>
               </div>
-              </form>
             </div>
           </div>
         </div>
