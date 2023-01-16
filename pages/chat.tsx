@@ -1,6 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
-import { use, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React, { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3001", {
@@ -13,12 +14,13 @@ interface Message {
   message: string;
 }
 
-export default function Chat() {
+export default function Chat({ pageProps }: any) {
+  const router = useRouter();
   const [author, setAuthor] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleMessages = (e: any) => {
+  const handleMessages = (e: any) => { 
     socket.emit("sendMessage", { author, message });
   };
 
@@ -39,7 +41,7 @@ export default function Chat() {
         { author: msg.author, message: msg.message },
       ]);
     });
-
+    
     getUser();
 
     return function cleanup() {
@@ -54,8 +56,14 @@ export default function Chat() {
       withCredentials: true,
       url: 'http://localhost:3001/api/v1/getUser'
     })
-      .then(res => setAuthor(res.data.name_chat))
-      .catch(e => console.log(e))
+      .then(res => {
+        setAuthor(res.data.name_chat);
+      })
+      .catch(e => {
+        router.push({
+          pathname: '/'
+        })
+      });
   };
 
   return (
@@ -77,7 +85,6 @@ export default function Chat() {
           <button
             className="w-600 h-12 text-sm bg-blueLight text-center leading-md font-bold text-white mt-3 hover:text-gray-300"
             onClick={handleMessages}
-            onSubmit={(e) => e.preventDefault()}
           >
             Enviar
           </button>

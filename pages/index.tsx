@@ -1,11 +1,14 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const router = useRouter();
 
   const login = () => {
     axios({
@@ -17,8 +20,18 @@ export default function Home() {
       withCredentials: true,
       url: 'http://localhost:3001/api/v1/login'
     })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        console.log(res);
+        
+        router.push({
+          pathname: '/chat'
+        })
+      })
+      .catch(err => {
+        router.push({
+          pathname: '/'
+        })
+      });
   };
 
 
@@ -62,7 +75,7 @@ export default function Home() {
 
               <div>
                 <button className="w-full text-sm bg-blue-500 hover:bg-blue-600 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow" onClick={login}>
-                  <Link href="/chat">Login</Link>
+                  Login
                 </button>
 
                 <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-slate-500 dark:hover:bg-slate-600 px-6 py-1 mt-3 rounded text-white shadow">
