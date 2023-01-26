@@ -1,21 +1,26 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Register() {
-  const [ name, setName ] = useState("");
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
+  const [ name_chat, setNameChat ] = useState("");
+  const [ email_chat, setEmailChat ] = useState("");
+  const [ password_chat, setPasswordChat ] = useState("");
+
+  const router = useRouter();
 
   const register = () => {
-    fetch('http://localhost:3001/api/v1/register', {
+    fetch('http://localhost:3001/api/register', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ email: email_chat, name: name_chat, password: password_chat })
     })
+    .then(() => router.push({ pathname: '/' }))
+    .catch(e => console.log(e))
   };
 
   return (
@@ -43,8 +48,8 @@ export default function Register() {
                   type="text"
                   name="name"
                   className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={name_chat}
+                  onChange={(e) => setNameChat(e.target.value)}
                 />
 
                 <label
@@ -57,8 +62,8 @@ export default function Register() {
                   type="text"
                   name="email"
                   className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={email_chat}
+                  onChange={(e) => setEmailChat(e.target.value)}
                 />
 
                 <div>
@@ -72,8 +77,8 @@ export default function Register() {
                     type="password"
                     name="password"
                     className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password_chat}
+                    onChange={(e) => setPasswordChat(e.target.value)}
                   />
                 </div>
 
