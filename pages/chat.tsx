@@ -41,7 +41,7 @@ export default function Chat({ pageProps }: any) {
         { author: msg.author, message: msg.message },
       ]);
     });
-    
+
     getUser();
 
     return function cleanup() {
@@ -50,19 +50,49 @@ export default function Chat({ pageProps }: any) {
     };
   }, []);
 
-  const getUser = () => {
-    axios({
-      method: 'GET',
-      withCredentials: true,
-      url: 'http://localhost:3001/api/v1/getUser'
+  useEffect(() => {
+    verifyLogin();
+  }, [message]);
+
+  const verifyLogin = () => {
+    const bearer_token = `Bearer ${localStorage.getItem('access_token')}`;
+
+    axios.get('http://localhost:3001/api/register', {
+      headers: {
+        Authorization: bearer_token
+      }
     })
-      .then(res => {
-        setAuthor(res.data.name_chat);
+      .then(() => {
+        return;
       })
       .catch(e => {
         router.push({
           pathname: '/'
         })
+
+        console.log(e);
+      });
+  }
+
+  const getUser = () => {
+    axios({
+      method: 'POST',
+      url: 'http://localhost:3001/api/register/getUser',
+      data: {
+        email: localStorage.getItem('email'),
+      }
+    })
+      .then(res => {
+        res.data.map((user: any) => {
+          setAuthor(user.name);
+        });
+      })
+      .catch(e => {
+        router.push({
+          pathname: '/'
+        })
+
+        console.log(e);
       });
   };
 
