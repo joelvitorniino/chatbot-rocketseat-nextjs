@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3001", {
+const socket = io("https://chatrocketseat-nextjs-api-url.up.railway.app/", {
   transports: ["websocket"],
   forceNew: true,
 });
@@ -57,7 +57,7 @@ export default function Chat({ pageProps }: any) {
   const verifyLogin = () => {
     const bearer_token = `Bearer ${localStorage.getItem('access_token')}`;
 
-    axios.get('http://localhost:3001/api/register', {
+    axios.get('https://chatrocketseat-nextjs-api-url.up.railway.app/api/register', {
       headers: {
         Authorization: bearer_token
       }
@@ -77,7 +77,7 @@ export default function Chat({ pageProps }: any) {
   const getUser = () => {
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/register/getUser',
+      url: 'https://chatrocketseat-nextjs-api-url.up.railway.app/api/register/getUser',
       data: {
         email: localStorage.getItem('email'),
       }

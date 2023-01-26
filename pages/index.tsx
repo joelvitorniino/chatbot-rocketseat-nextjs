@@ -17,7 +17,7 @@ export default function Home() {
         email,
         password
       },
-      url: 'http://localhost:3001/api/register/login'
+      url: 'https://chatrocketseat-nextjs-api-url.up.railway.app/api/register/login'
     })
       .then(res => {
         console.log(res);
