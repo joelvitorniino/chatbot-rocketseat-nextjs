@@ -10,27 +10,29 @@ export default function Home() {
 
   const router = useRouter();
 
-  const login = () => {
+  const login = () => { 
     axios({
       method: 'POST',
       data: {
-        username: email,
+        email,
         password
       },
-      withCredentials: true,
-      url: 'http://localhost:3001/api/v1/login'
+      url: 'http://localhost:3001/api/register/login'
     })
       .then(res => {
         console.log(res);
         
+        localStorage.setItem('access_token', res.data.accessToken);
+        localStorage.setItem('email', email);
+
         router.push({
           pathname: '/chat'
         })
       })
       .catch(err => {
-        router.push({
-          pathname: '/'
-        })
+        // router.push({
+        //   pathname: '/'
+        // })
       });
   };
 
