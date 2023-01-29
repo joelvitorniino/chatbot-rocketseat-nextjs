@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { api } from "../lib/axios";
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -11,13 +12,11 @@ export default function Home() {
   const router = useRouter();
 
   const login = () => { 
-    axios({
-      method: 'POST',
+    api.post('/api/register/login', {
       data: {
         email,
         password
       },
-      url: 'https://chatrocketseat-nextjs-api-url.up.railway.app/api/register/login'
     })
       .then(res => {
         console.log(res);
@@ -30,9 +29,9 @@ export default function Home() {
         })
       })
       .catch(err => {
-        // router.push({
-        //   pathname: '/'
-        // })
+        router.push({
+          pathname: '/'
+        })
       });
   };
 
