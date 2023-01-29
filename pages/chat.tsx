@@ -5,7 +5,7 @@ import React, { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { api } from "../lib/axios";
 
-const socket = io(process.env.BASE_URL as string, {
+const socket = io('localhost:3001', {
   transports: ["websocket"],
   forceNew: true,
 });
@@ -77,9 +77,7 @@ export default function Chat() {
 
   const getUser = () => {
     api.post('/api/register/getUser', {
-      data: {
-        email: localStorage.getItem('email'),
-      }
+      email: localStorage.getItem('email'),
     })
       .then(res => {
         res.data.map((user: any) => {

@@ -13,11 +13,9 @@ export default function Register() {
 
   const register = () => {
     api.post('/api/register', {
-      data: { 
-        email: email_chat, 
-        name: name_chat, 
-        password: password_chat 
-      }
+      email: email_chat, 
+      name: name_chat, 
+      password: password_chat 
     })
     .then(() => router.push({ pathname: '/' }))
     .catch(e => console.log(e))

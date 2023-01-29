@@ -13,10 +13,8 @@ export default function Home() {
 
   const login = () => { 
     api.post('/api/register/login', {
-      data: {
         email,
         password
-      },
     })
       .then(res => {
         console.log(res);
