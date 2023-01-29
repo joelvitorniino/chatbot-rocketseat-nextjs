@@ -3,8 +3,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { use, useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { api } from "../lib/axios";
 
-const socket = io("https://chatrocketseat-nextjs-api-url.up.railway.app/", {
+const socket = io(process.env.BASE_URL as string, {
   transports: ["websocket"],
   forceNew: true,
 });
@@ -14,7 +15,7 @@ interface Message {
   message: string;
 }
 
-export default function Chat({ pageProps }: any) {
+export default function Chat() {
   const router = useRouter();
   const [author, setAuthor] = useState("");
   const [message, setMessage] = useState("");
@@ -57,7 +58,7 @@ export default function Chat({ pageProps }: any) {
   const verifyLogin = () => {
     const bearer_token = `Bearer ${localStorage.getItem('access_token')}`;
 
-    axios.get('https://chatrocketseat-nextjs-api-url.up.railway.app/api/register', {
+    api.get('/api/register', {
       headers: {
         Authorization: bearer_token
       }
@@ -75,9 +76,7 @@ export default function Chat({ pageProps }: any) {
   }
 
   const getUser = () => {
-    axios({
-      method: 'POST',
-      url: 'https://chatrocketseat-nextjs-api-url.up.railway.app/api/register/getUser',
+    api.post('/api/register/getUser', {
       data: {
         email: localStorage.getItem('email'),
       }
