@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { api } from "../lib/axios";
 
 export default function Register() {
   const [ name_chat, setNameChat ] = useState("");
@@ -11,13 +12,12 @@ export default function Register() {
   const router = useRouter();
 
   const register = () => {
-    fetch('http://localhost:3001/api/register', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email: email_chat, name: name_chat, password: password_chat })
+    api.post('/api/register', {
+      data: { 
+        email: email_chat, 
+        name: name_chat, 
+        password: password_chat 
+      }
     })
     .then(() => router.push({ pathname: '/' }))
     .catch(e => console.log(e))
