@@ -11,7 +11,7 @@ export default function Register() {
   const router = useRouter();
 
   const register = () => {
-    fetch('https://chatrocketseat-nextjs-api-url.up.railway.app/api/register', {
+    fetch('http://localhost:3001/api/register', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
