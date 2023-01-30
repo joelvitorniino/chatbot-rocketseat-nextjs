@@ -68,7 +68,7 @@ export default function Home() {
               </div>
 
               <div className="text-right">
-                <Link href="#" className="text-sm text-gray-500 hover:underline mr-8">Login with Google</Link>
+                <Link href="http://localhost:3001/auth/google/callback" className="text-sm text-gray-500 hover:underline mr-8">Login with Google</Link>
                 <Link href="#" className="text-sm text-gray-500 hover:underline">Forgot my password</Link>
               </div>
 
