@@ -1,9 +1,20 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { api } from "../lib/axios";
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("");
+
+    const forgotPassword = (e: any) => {
+        api.post('/recoverPassword', {
+            email
+        })
+            .then(() => {
+                return;
+            })
+            .catch(e => console.log(e));
+    };
 
     return (
         <>
@@ -34,7 +45,7 @@ export default function ForgotPassword() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <div>
-                  <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow">
+                  <button className="w-full text-sm bg-red-400 hover:bg-red-500 dark:bg-gray-800 dark:hover:bg-gray-900 px-6 py-1 mt-3 rounded text-white shadow" onClick={forgotPassword}>
                     <Link href="/reset_password">Recover Password</Link>
                   </button>
                 </div>
