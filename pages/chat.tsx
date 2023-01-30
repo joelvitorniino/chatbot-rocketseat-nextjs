@@ -1,11 +1,10 @@
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { api } from "../lib/axios";
 
-const socket = io('localhost:3001', {
+const socket = io("localhost:3001", {
   transports: ["websocket"],
   forceNew: true,
 });
@@ -21,7 +20,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleMessages = (e: any) => { 
+  const handleMessages = (e: any) => {
     socket.emit("sendMessage", { author, message });
   };
 
@@ -56,38 +55,38 @@ export default function Chat() {
   }, [message]);
 
   const verifyLogin = () => {
-    const bearer_token = `Bearer ${localStorage.getItem('access_token')}`;
+    const bearer_token = `Bearer ${localStorage.getItem("access_token")}`;
 
-    api.get('/api/register', {
-      headers: {
-        Authorization: bearer_token
-      }
-    })
+    api
+      .get("/api/register", {
+        headers: {
+          Authorization: bearer_token,
+        },
+      })
       .then(() => {
         return;
       })
-      .catch(e => {
+      .catch((e) => {
         router.push({
-          pathname: '/'
-        })
+          pathname: "/",
+        });
 
         console.log(e);
       });
-  }
+  };
 
   const getUser = () => {
-    api.post('/api/register/getUser', {
-      email: localStorage.getItem('email'),
-    })
-      .then(res => {
-        res.data.map((user: any) => {
-          setAuthor(user.name);
-        });
+    api
+      .post("/api/register/getUser", {
+        email: localStorage.getItem("email"),
       })
-      .catch(e => {
+      .then((res) => {
+        setAuthor(res.data.username);
+      })
+      .catch((e) => {
         router.push({
-          pathname: '/'
-        })
+          pathname: "/",
+        });
 
         console.log(e);
       });
