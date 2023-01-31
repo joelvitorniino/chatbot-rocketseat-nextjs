@@ -46,6 +46,8 @@ export default function ChatGoogle() {
 
     getUser();
 
+    verifyLogin();
+
     return function cleanup() {
       socket.removeListener("previousMessages");
       socket.removeListener("receivedMessage");
@@ -69,8 +71,31 @@ export default function ChatGoogle() {
       .post("/api/register/getUser", {
         email: localStorage.getItem("email"),
       })
-      .then((response) => setAuthor(response.data.username))
+      .then((response) => {
+        setAuthor(response.data.username);
+      })
       .catch((e) => console.log(e));
+  };
+
+  const verifyLogin = () => {
+    const bearer_token = `Bearer ${localStorage.getItem("accessToken")}`;
+
+    api
+      .get("/api/register", {
+        headers: {
+          Authorization: bearer_token,
+        },
+      })
+      .then(() => {
+        return;
+      })
+      .catch((e) => {
+        router.push({
+          pathname: "/",
+        });
+
+        console.log(e);
+      });
   };
 
   return (
