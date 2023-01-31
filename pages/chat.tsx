@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { api } from "../lib/axios";
 
-const socket = io("localhost:3001", {
+const socket = io("chatbot-rocketseat-api-production.up.railway.app", {
   transports: ["websocket"],
   forceNew: true,
 });
