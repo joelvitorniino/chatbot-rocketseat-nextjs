@@ -1,12 +1,10 @@
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { api } from "../lib/axios";
-import { useCookies } from "react-cookie";
 
-const socket = io('localhost:3001', {
+const socket = io("localhost:3001", {
   transports: ["websocket"],
   forceNew: true,
 });
@@ -22,7 +20,7 @@ export default function ChatGoogle() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleMessages = (e: any) => { 
+  const handleMessages = (e: any) => {
     socket.emit("sendMessage", { author, message });
   };
 
@@ -54,24 +52,25 @@ export default function ChatGoogle() {
     };
   }, []);
 
-  
   const getUserData = async () => {
-    await api.get('/auth/google/accessToken', {
-        withCredentials: true
-    })
-        .then(response => {
-            localStorage.setItem('accessToken', response.data.accessToken);
-            localStorage.setItem('email', response.data.email);
-        })
-        .catch(e => console.log(e));
-    };
+    await api
+      .get("/auth/google/accessToken", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("email", response.data.email);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const getUser = async () => {
-    await api.post('/api/register/getUser', {
-        email: localStorage.getItem('email')
-    })
-        .then(response => setAuthor(response.data.username))
-        .catch(e => console.log(e));
+    await api
+      .post("/api/register/getUser", {
+        email: localStorage.getItem("email"),
+      })
+      .then((response) => setAuthor(response.data.username))
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -113,13 +112,3 @@ export default function ChatGoogle() {
     </>
   );
 }
-
-export async function getServerSideProps(ctx: any) {
-  console.log(ctx.req.cookies.session);
-  
-  return {
-    props: {
-      data: 'eae'
-    }
-  }
-};
