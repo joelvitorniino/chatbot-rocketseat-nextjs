@@ -56,7 +56,7 @@ export default function ChatGoogle() {
 
   const getUserData = async () => {
     await api
-      .get("/auth/google/accessToken", {
+      .get("auth/google/accessToken", {
         withCredentials: true,
       })
       .then((response) => {
