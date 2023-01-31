@@ -41,18 +41,12 @@ export default function ChatGoogle() {
         { author: msg.author, message: msg.message },
       ]);
     });
-    
-    setTimeout(() => {
-      getUserData();
-    }, 4000);
 
-    setTimeout(() => {
-      getUser();
-    }, 2000);
+    getUserData();
 
-    setTimeout(() => {
-      verifyLogin();
-    }, 3000);
+    getUser();
+
+    verifyLogin();
 
     return function cleanup() {
       socket.removeListener("previousMessages");
