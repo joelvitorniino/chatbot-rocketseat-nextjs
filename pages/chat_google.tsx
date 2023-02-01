@@ -47,6 +47,7 @@ export default function ChatGoogle() {
     getUser();
 
     verifyLogin();
+
     return function cleanup() {
       socket.removeListener("previousMessages");
       socket.removeListener("receivedMessage");
@@ -54,20 +55,13 @@ export default function ChatGoogle() {
   }, []);
 
   const getUserData = async () => {
-    await fetch("https://chatbot-rocketseat-api-production.up.railway.app/auth/google/accessToken", {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+    await api
+      .get("auth/google/accessToken", {
+        withCredentials: true,
       })
       .then((response) => {
-        response.json()
-      })
-      .then((data: any) => {
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("email", data.email);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("email", response.data.email);
       })
       .catch((e) => console.log(e));
   };

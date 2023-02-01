@@ -79,7 +79,7 @@ export default function Home() {
 
               <div className="text-right">
                 <Link
-                  href="http://chatbot-rocketseat-api-production.up.railway.app/auth/google/callback"
+                  href="https://chatbot-rocketseat-api-production.up.railway.app/auth/google/callback"
                   className="text-sm text-gray-500 hover:underline mr-8"
                 >
                   Login with Google
