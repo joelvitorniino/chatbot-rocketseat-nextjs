@@ -42,11 +42,14 @@ export default function ChatGoogle() {
       ]);
     });
 
-    getUserData();
+    setTimeout(() => {
+      getUserData();
 
-    getUser();
+      getUser();
 
-    verifyLogin();
+      verifyLogin();
+
+    }, 16000);
 
     return function cleanup() {
       socket.removeListener("previousMessages");
@@ -60,10 +63,8 @@ export default function ChatGoogle() {
         withCredentials: true,
       })
       .then((response) => {
-        // localStorage.setItem("accessToken", response.data.accessToken);
-        // localStorage.setItem("email", response.data.email);
-
-        console.log(response.data);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("email", response.data.email);
       })
       .catch((e) => console.log(e));
   };
@@ -74,8 +75,7 @@ export default function ChatGoogle() {
         email: localStorage.getItem("email"),
       })
       .then((response) => {
-        // setAuthor(response.data.username);
-        console.log(response.data);
+        setAuthor(response.data.username);
       })
       .catch((e) => console.log(e));
   };
