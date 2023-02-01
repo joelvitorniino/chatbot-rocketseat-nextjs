@@ -60,8 +60,10 @@ export default function ChatGoogle() {
         withCredentials: true,
       })
       .then((response) => {
-        localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("email", response.data.email);
+        // localStorage.setItem("accessToken", response.data.accessToken);
+        // localStorage.setItem("email", response.data.email);
+
+        console.log(response.data);
       })
       .catch((e) => console.log(e));
   };
@@ -72,7 +74,8 @@ export default function ChatGoogle() {
         email: localStorage.getItem("email"),
       })
       .then((response) => {
-        setAuthor(response.data.username);
+        // setAuthor(response.data.username);
+        console.log(response.data);
       })
       .catch((e) => console.log(e));
   };
