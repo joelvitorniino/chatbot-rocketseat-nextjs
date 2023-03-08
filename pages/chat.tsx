@@ -105,6 +105,9 @@ export default function Chat() {
             className="w-full border border-solid border-whiteLight h-12 pl-0 pr-5 text-sm hover:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
             placeholder=" Digite sua mensagem:"
             value={message}
+            required
+            minLength={2}
+            maxLength={150}
             onChange={(e) => setMessage(e.target.value)}
           />
 
