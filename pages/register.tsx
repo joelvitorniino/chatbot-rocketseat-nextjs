@@ -48,6 +48,7 @@ export default function Register() {
                 name="name"
                 className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
                 value={name_chat}
+                required
                 onChange={(e) => setNameChat(e.target.value)}
               />
 
@@ -62,6 +63,7 @@ export default function Register() {
                 name="email"
                 className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
                 value={email_chat}
+                required
                 onChange={(e) => setEmailChat(e.target.value)}
               />
 
@@ -77,6 +79,7 @@ export default function Register() {
                   name="password"
                   className="w-full bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 rounded px-3 py-2 text-sm text-gray-800 placeholder-gray-300 focus:outline-none transition duration-200 ease-in-out"
                   value={password_chat}
+                  required
                   onChange={(e) => setPasswordChat(e.target.value)}
                 />
               </div>
